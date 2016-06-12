@@ -60,7 +60,7 @@ The following line runs the script at 12:30PM.
 Should never be run as it is started automatically by the second script.
 
 ## Required packages
-* sendemail (see my repository for fixing sendemail to use with gmail)
+* sendemail (see my repository "sendemail-fix" to fix sendemail and use it with gmail)
 * ImageMagick
 * awk
 * printf
