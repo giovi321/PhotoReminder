@@ -26,7 +26,8 @@ echo "$gps"
 # Prepara il link con le coordinate gps da inserire nella email
 gpsmaps=$(echo $gps | sed "s/ /+/g")
 
-# Definisce variabili per sendemail
+# Define variables for sendemail
+# Change those variables according to your email provider settings and your preferences
 from="someone@somewhere.com"
 dest="someoneelse@somewhere.com"
 smtp="smtp.gmail.com:587" # Default gmail settings
