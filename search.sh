@@ -43,7 +43,16 @@ for file in "${file_list[@]}" ; do
 # Inserisce separatore csv
     echo -n ";" >>$database
 # Estrae dati GPS da EXIF info
-	identify -verbose -quiet "$file" | grep -e "exif:GPSLatitude:" -e "exif:GPSLatitudeRef:" -e "exif:GPSLongitude:" -e "exif:GPSLongitudeRef:" | sed "s/    /$nul/g" | sed "s/exif:GPSLatitudeRef: /$nul/g" | sed "s/exif:GPSLongitude:/$nul/g" | sed "s/exif:GPSLongitudeRef: /$nul/g" | sed "s/exif:GPSLatitude: /$nul/g" | sed "s/\/1/$nul/g" | sed "s/,/$nul/g" | tr -d '\n' >>$database
+	identify -verbose -quiet "$file" | grep -e "exif:GPSLatitude:" -e "exif:GPSLatitudeRef:" -e "exif:GPSLongitude:" -e "exif:GPSLongitudeRef:" | \
+awk '
+NF==4 { for(i=2;i<=4;i++){
+         split($i,x,"/")
+         printf "%s%g",i==2?"":" ",x[1]/x[2]
+        }
+      }
+NF==2 { printf "%s%s",$2,$1~/Lat/?" ":"\n" }' >>$database
+# Alternativa per estrarre dati GPS da EXIF info
+#	identify -verbose -quiet "$file" | grep -e "exif:GPSLatitude:" -e "exif:GPSLatitudeRef:" -e "exif:GPSLongitude:" -e "exif:GPSLongitudeRef:" | sed "s/    /$nul/g" | sed "s/exif:GPSLatitudeRef: /$nul/g" | sed "s/exif:GPSLongitude:/$nul/g" | sed "s/exif:GPSLongitudeRef: /$nul/g" | sed "s/exif:GPSLatitude: /$nul/g" | sed "s/\/1/$nul/g" | sed "s/,/$nul/g" | tr -d '\n' >>$database
 # Scrive nuova linea
     printf "\n" >>$database
 done
