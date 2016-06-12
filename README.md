@@ -1,6 +1,6 @@
 # PhotoReminder
-Bash script that emails pictures on the 365th day since when they were shot. Includes GPS coordinates of the picture.
-
+ Bash script that emails pictures on the anniversary when they were shot. Includes GPS coordinates of the picture.
+ 
 ## What does the script do?
 The script is divided into three sub-scripts.
 ### First script (search.sh)
