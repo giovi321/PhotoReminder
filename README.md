@@ -46,7 +46,7 @@ Don not run this script, it is automatically run by the second script.
 The script is intended to be run with cron.
 
 ### First script (search.sh)
-Should be ran once a year less one day since the scripts finds pictures that are exactly one year old. However, I run it every month as the script can be modified to match pictures that are x days old.
+Should be ran once a year less one day since the scripts finds pictures that are exactly one year old. However, I run it every month as maybe I add older pictures that were not in the folder before and i want them to be parsed in the database soon.
 
 	@monthly /home/scripts/photo/search.sh
 
