@@ -32,6 +32,10 @@ file_list=()
 while IFS= read -d $'\0' -r file ; do
     file_list=("${file_list[@]}" "$file")
 done < <(find -L "$1" -iname *.jpg -print0)
+# If you don't want the script to scan also the subfolders of the direcotry you defined
+# when launching the program, change the line above to:
+# done < <(find "$1" -iname *.jpg -print0)
+# it simply removes the "-L" option of "find".
 
 # Loop per estrarre informazioni
 for file in "${file_list[@]}" ; do
