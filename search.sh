@@ -1,5 +1,4 @@
-#!/bin/sh
-# PhotoReminder
+#!/bin/bash
 ############### PRIMA PARTE DELLO SCRIPT ###############
 # Genera il database
 
