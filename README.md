@@ -29,10 +29,12 @@ The script is divided into three sub-scripts.
 
 ## How to use the script
 ### First script (search.sh)
-Run the script by defining in which folder (and all the subfolders) it should look for pictures:
+Run the script by defining in which folder it should look for pictures (NOTE: all subfolders will be scanned for pictures as well**):
 
-	./search.sh /choose/a/directory
-	
+	./search.sh /directory/of/your/pictures
+
+**This option can be changed by changing the option in search.sh file. Check the comments starting on the line 35.
+
 ### Second script (search2.sh)
 Just run it:
 
@@ -48,7 +50,7 @@ The script is intended to be run with cron.
 ### First script (search.sh)
 Should be ran once a year less one day since the scripts finds pictures that are exactly one year old. However, I run it every month as maybe I add older pictures that were not in the folder before and i want them to be parsed in the database soon.
 
-	@monthly cd /path/to/the/script/ && ./search.sh
+	@monthly cd /path/to/the/script/ && ./search.sh /directory/of/your/pictures
 
 ### Second script (search2.sh)
 Should be run every day at a specified time, so that you receive one picture every day by email.
