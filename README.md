@@ -48,13 +48,13 @@ The script is intended to be run with cron.
 ### First script (search.sh)
 Should be ran once a year less one day since the scripts finds pictures that are exactly one year old. However, I run it every month as maybe I add older pictures that were not in the folder before and i want them to be parsed in the database soon.
 
-	@monthly /home/scripts/photo/search.sh
+	@monthly cd /path/to/the/script/ && ./search.sh
 
 ### Second script (search2.sh)
 Should be run every day at a specified time, so that you receive one picture every day by email.
 The following line runs the script at 12:30PM.
 
-	30 12 * * * /home/scripts/photo/search2.sh
+	30 12 * * * cd /path/to/the/script/ && ./search2.sh
 
 ### Third script (search3.sh)
 Should never be run as it is started automatically by the second script.
