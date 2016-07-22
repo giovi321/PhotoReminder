@@ -3,6 +3,7 @@
 # Decide quale foto inviare prendendola casualmente dal databasematch
 # e la invia per email
 
+
 # Definisce le variabili
 databasematch="photodbmatch.csv"
 logfile="photodb.log"
@@ -26,9 +27,19 @@ echo "$gps"
 # Prepara il link con le coordinate gps da inserire nella email
 gpsmaps=$(echo $gps | sed "s/ /+/g")
 
+# Controlla se il file selezionato esiste
+if [ ! -f "$path" ]
+then
+    echo No file selected. Exiting script. >>$logfile
+    exit
+fi
+
 # Definisce variabili per sendemail
 from="someone@somewhere.com"
-dest="SomeoneElse@somewhere.com"
+dest="SomeoneElse@somewhere.com" #recipient
+# Uncomment to add more recipients
+#dest2="zyx@wvu.ts"
+#dest3="abc@def.gh"
 smtp="smtp.gmail.com:587" # Default gmail settings
 username="UserID"
 pass="AVerySafePassword"
@@ -36,6 +47,9 @@ message="<html><p>This picture was shot exactly one year ago!</p><p>Picture date
 subject="Picture of the day"
 
 sendemail -f $from -t $dest -u $subject -s $smtp -o tls=yes -xu $username -xp $pass -m $message -a "$path" >>$logfile
+# Uncomment to add more recipients
+#sendemail -f $from -t $dest2 -u $subject -s $smtp -o tls=yes -xu $username -xp $pass -m $message -a "$path" >>$logfile
+#sendemail -f $from -t $dest3 -u $subject -s $smtp -o tls=yes -xu $username -xp $pass -m $message -a "$path" >>$logfile
 
 # Termina log
 echo "["$(date +"%d-%m-%Y %H:%M:%S")"] - Script part 3 finished." >>$logfile
